@@ -28,7 +28,7 @@ BASE_DIR = str(ROOTPATH)  # os.path.dirname(os.path.dirname(os.path.abspath(__fi
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lkeq)cq&p!o^ww=2-j^wmg80hnyyv9c#tf&cmlqkincr%9km@c'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
@@ -219,7 +219,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SENDSMS_FROM_NUMBER = '+13345680002'
+SENDSMS_FROM_NUMBER = ''
 
 FRIENDSHIP = {
     "USER_SERIALIZER": 'api.serializers.UserSerializer',
@@ -234,9 +234,9 @@ CHANNEL_LAYERS = {
         }
     },
 }
-EMAIL_HOST = 'smtp.outlook.com'
+EMAIL_HOST = ''
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'davidweaves@outlook.com'
+EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
