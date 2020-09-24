@@ -35,16 +35,16 @@ DEBUG = os.environ.get('DEBUG', True)
 
 ERROR_TRACE_LEVEL = 10
 
-account_sid = "ACc16935e5ba641a7fb530cb079d497f0d"
-api_key = "SK193b0e97e74bba83a115cb22ec719b28"
-api_key_secret = "PM8zznWkXWI7WZHXyc2YyWxLIBYR4Xq3"
-app_sid = "APd257f214371e7edfbe1706a5f9c71b06"
-push_credential_sid = "CRd49104844d81299e668869b97ace3cc5"
-auth_token = "a4cff3cdb6063b9189bb31d9b455fe40"
+account_sid = ""
+api_key = ""
+api_key_secret = ""
+app_sid = ""
+push_credential_sid = ""
+auth_token = ""
 
 CALLER_NUMBER = '+13345680002'
 
-google_api_key = 'AIzaSyAH-5Fyiz2niyxJnw5OT19vhnqmdz-1BK4'
+google_api_key = ''
 google_maps_api_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?'
 google_place_photo_url = 'https://maps.googleapis.com/maps/api/place/photo?'
 
@@ -241,8 +241,8 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-RECAPTCHA_PUBLIC_KEY = '6Lfff94UAAAAACUVkrHSgK7Df79lkS8UMT6knAAs'
-RECAPTCHA_PRIVATE_KEY = '6Lfff94UAAAAABMhJfRuSg27dBY1rRxXP7DQbztF'
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
 
 LOGGING = {
     'version': 1,
