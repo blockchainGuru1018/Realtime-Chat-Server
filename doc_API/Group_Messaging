@@ -1,0 +1,113 @@
+Group Messaging API
+all endpoints are auth only with authorization
+
+
+/api/groups/
+  standard operations for creating, viewing a list and deleting an object
+  parameters and possibilities for analogy with other end points
+
+Additional features.
+
+GET /api/groups/ (? [Page = <int>])
+    query parameters:
+     - page: page number (optional)
+
+    response: 200
+    {
+      "count": 2, - total records found
+      "next": null, - url of the next page
+      "previous": null, - url of the previous page
+      "results": [
+          {
+              "id": 1,
+              "name": "my group",
+              "description": "for user2",
+              "photo": null,
+              "access_key": "08cf77da94b1e1838c9fe0425e7e171674d6866c9a26c44c7342ebceecf6214e",
+              "general_access": true,
+              "creater": 2,
+              "members": [
+                  2
+                  49
+              ]
+          },
+          {
+              "id": 2,
+              "name": "g 49",
+              "description": "qwerqwer",
+              "photo": null,
+              "access_key": "ba9b423f70ba97b5530e6941b4f6be09ea00abbaa9686bc5be32c5e404472b3b",
+              "general_access": true,
+              "creater": 49,
+              "members": [
+                  2
+              ]
+          }
+      ]
+    }
+
+
+POST /api/groups/
+    body parameters:
+    - name: <str> group name (required)
+    - description: <str> description
+    - photo: icon file
+    - general_access: <boolean> whether or not the group is shared. If so, registration by key is available; if not, only the creator can add
+    - members: [<user_ids>] list of group members
+
+
+GET /api/groups/registration/? by_key = <str>
+    query param:
+    - by_key: access key, for registration in a group (access_key)
+
+    response: 200
+
+      {
+      "status": "ok",
+      "group": {
+          "id": 2,
+          "name": "g 49",
+          "description": "qwerqwer",
+          "photo": null,
+          "access_key": "ba9b423f70ba97b5530e6941b4f6be09ea00abbaa9686bc5be32c5e404472b3b",
+          "general_access": true,
+          "creater": 49,
+          "members": [
+              2
+          ]
+        }
+      }
+
+    response: 401
+    {
+      "status": "no access"
+    }
+
+
+=========================================
+/api/groupMessages
+Options and features as in /api/voiceMessages
+
+Additional options and features:
+
+GET /api/groupMessages (? [Page = <int>] [group = <int>])
+pagination works like in /api/groups/
+  - group: filter by specific group
+
+
+POST /api/groupMessages
+  body parameters:
+  Fields are the same as in /api/voiceMessages
+  ! not using the to_user field
+  - group: number of the group in which the user is registered or is the creator (required parameter)
+
+
+
+==========================================
+Websocket
+
+/ws/chat/group_ <id>
+
+when sending a message to the to_user group - not needed. It’s enough to specify the group id in the channel name
+e.g. /ws/chat/group_2
+if the message is sent to a group in which the user is not registered, it will not be delivered

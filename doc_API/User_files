@@ -1,0 +1,23 @@
+User files API
+
+/api/user_files/
+    Allows to store user files with separate access.
+    Standard operations for creating, viewing a list and deleting an object.
+    Available fields : OPTIONS /api/user_files/
+
+
+
+Additional features.
+
+GET /api/user_files/ (? [search = <str>] [owner = <int>])
+     query parameters:
+      - search:  Search files by user full_name
+      - owner: UserID
+
+
+POST /api/user_files/ (also for PUT /api/user_files/<user_file_id>/)
+    body parameters:
+      - owner: UserID. Filled in automatically.
+      - file: File path
+      - access_group: CategoryID. multifield.
+      If there is no group in this field, then the file is visible to everyone

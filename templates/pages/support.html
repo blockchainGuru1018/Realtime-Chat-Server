@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'icon/favico.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="center-block col-md-4" style="float: none;">
+
+                <img style="width: 360px; height: 247px;" src="{% static "images/weave icon@2x.png" %}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h2">Contact us</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form action="." method='POST'>{% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    {{ form.name }}
+                                    <!-- <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" /> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    {{ form.email }}
+                                    <!-- <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    {{ form.subject }}
+                                    <!-- <select id="subject" name="subject" class="form-control" required="required">
+                                    <option value="na" selected="">Choose One:</option>
+                                    <option value="service">General Customer Service</option>
+                                    <option value="suggestions">Suggestions</option>
+                                    <option value="product">Product Support</option>
+                                </select> -->
+                                </div>
+                                <div class="form-group">
+                                    {{ form.captcha }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">
+                                        Message</label>
+                                    {{ form.message }}
+                                    <!-- <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                    placeholder="Message"></textarea> -->
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                                    Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+        <div class="container">
+            <p style="display:inline-block">&copy; 2020 ωeave </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

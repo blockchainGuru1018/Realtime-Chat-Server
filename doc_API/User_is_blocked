@@ -1,0 +1,22 @@
+api/users/<user_id>/is_blocked/ (? value = <boolean>)
+     sets / returns is_blocked
+     without parameters returns the current value
+     - value = true / false
+
+     response:
+     - 200: [
+               {
+                   "status": 200,
+                   "message": {
+                       "is_blocked": false
+                   }
+               },
+               200
+           ]
+     - 400: [
+               {
+                   "status": 400,
+                   "message": "user not found"
+               },
+               400
+           ]

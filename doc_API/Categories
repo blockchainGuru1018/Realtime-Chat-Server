@@ -1,0 +1,22 @@
+Categories API
+
+/api/categories/
+    Allows you to assign user groups. This endpoint is only available to authorized users.
+    Standard operations for creating, viewing a list and deleting an object.
+    Available fields : OPTIONS /api/categories/
+
+
+
+Additional features.
+
+POST /api/categories/ (also for PUT /api/categories/<category_id>/)
+    body parameters:
+      - owner: UserID. Filled in automatically.
+      - name: Category name
+      - description: Description
+      - members: UserID. multifield. Group members
+
+
+
+GET /api/categories/<category_id>/members/
+      Returns the composition of the group - a list of users. Output format as in /api/users/

@@ -1,0 +1,121 @@
+Events API
+
+/api/event_types/
+    Types of events to classify. Installed globally for all users.
+    Standard operations for creating, viewing a list and deleting an object.
+    Available fields : OPTIONS /api/event_types/
+
+
+/api/events/
+    Allows you to plan scheduled events.
+    Standard operations for creating, viewing a list and deleting an object.
+    Available fields : OPTIONS /api/events/
+
+
+Additional features for /api/events/.
+
+GET /api/events/ (? [search = <str>] [type_name = <str>]
+                  & [creator_id = <int>] & [party_id = <int>]
+                  & [room_id = <int>] & [created = <str>]
+                  & [start = <str>] & [end = <str>]
+                  )
+     query parameters:
+      - search:  Search events by title, place, description
+      - type_name: Exact match!
+      - party_id: participant ID
+      - room_id: Group chat ID
+      - created: Creation date in YYYY-MM-DD format
+      - start / end : Date range. YYYY-MM-DD format. If not specified, default take 10 days before and 30 days after the current date.
+
+POST /api/events/ (also for PUT /api/events/<event_id>/)
+    body parameters:
+      - title: Event title
+      - start_date: Start date. YYYY-MM-DD format
+      - start_time / end_time: Time range for the day. HH format: MM
+      - place: The place of the event.
+      - description: Description
+      - creator: creator ID
+      - type: event type ID
+      - room: ID of the group chat
+      - party: UserID. multifield. Event participants
+      - recurrences: Recurrence / Rule objects using a subset of rfc2445 for specifying recurring date / times;
+      For example "RRULE:FREQ=WEEKLY;UNTIL=20200826T220000Z;BYDAY=MO".
+      To learn and understand this format, you can use the js widget,
+      which is available in the django admin panel. Go to the control panel (http://<hosthame>/admin user: admin pass: admin).
+      Create a new event by setting the desired repeat parameters through the widget,
+      click save and look through the browser inspector for the POST request that was sent to the server.
+      Format description here https://www.ietf.org/rfc/rfc2445.txt
+
+
+
+
+GET /api/events/calendar/ (? [type_name = <str>]
+                  & [creator_id = <int>] & [party_id = <int>]
+                  & [room_id = <int>] & [created = <str>]
+                  & [start = <str>] & [end = <str>]
+                  )
+      Events in chronological order. Field "date" - the next date of the event
+
+
+      response: 200
+
+          [
+        {
+            "id": 2,
+            "event": {
+                "id": 3,
+                "type_name": null,
+                "title": "test",
+                "created": "2020-08-04T17:09:51.576691Z",
+                "start_date": "2020-07-01",
+                "start_time": "17:08:52",
+                "end_time": "18:00:00",
+                "place": null,
+                "description": null,
+                "recurrences": "RRULE:FREQ=WEEKLY;UNTIL=20200729T220000Z\nRRULE:FREQ=WEEKLY;UNTIL=20200812T220000Z",
+                "creator": 21,
+                "type": null,
+                "room": null,
+                "party": []
+            },
+            "date": "2020-08-04"
+        },
+        {
+            "id": 9,
+            "event": {
+                "id": 4,
+                "type_name": null,
+                "title": "wertewrt",
+                "created": "2020-08-04T20:32:51.404539Z",
+                "start_date": "2020-08-04",
+                "start_time": "05:26:52",
+                "end_time": "11:25:52",
+                "place": null,
+                "description": null,
+                "recurrences": "RRULE:FREQ=WEEKLY;UNTIL=20200826T220000Z;BYDAY=MO",
+                "creator": 21,
+                "type": null,
+                "room": null,
+                "party": []
+            },
+            "date": "2020-08-10"
+        },
+        ...
+        ...
+        ]
+
+
+
+GET /api/events/<event_id>/dates/
+      Returns all occurrences of dates for a specific event
+
+      url param:
+      - event_id - int. Event ID
+
+      response: 200
+
+      [
+          "2020-08-10",
+          "2020-08-17",
+          "2020-08-24"
+      ]
